@@ -1,0 +1,31 @@
+@import "../../sass/theme.scss";
+
+.root-layout {
+  // display: flex;
+  // flex-flow: column;
+  position: relative;
+  padding: 2rem;
+  // align-items: center;
+}
+
+.root-layout__table-paginator {
+  margin-top: 1rem;
+}
+
+.root-layout__table {
+  margin: 1rem 0rem;
+}
+
+.search {
+  display: flex;
+  flex: 1;
+
+  margin: 0.5rem;
+}
+
+.data-type {
+  display: flex;
+  flex-flow: column;
+
+  margin: 0.5rem;
+}

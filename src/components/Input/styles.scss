@@ -1,0 +1,23 @@
+@import "../../sass/theme.scss";
+
+.input__element-container {
+  position: relative;
+}
+
+.input__element {
+  @include unselectable();
+  @include font-default();
+  @include effect-hover();
+  @include border-default();
+
+  transition: all 0.1s ease-in;
+
+  position: relative;
+
+  background-color: $color-secondary;
+
+  width: 100%;
+
+  padding: 0 0.25rem;
+  position: relative;
+}

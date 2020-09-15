@@ -1,0 +1,34 @@
+@import "../../sass/theme.scss";
+
+.btn {
+  @include unselectable();
+  @include effect-hover();
+  @include margin-default();
+
+  background-color: $color-secondary;
+  border: 1px solid $color-grey-1;
+
+  &:active {
+    border: 1px solid $color-secondary;
+    background-color: $color-light-0;
+  }
+}
+
+.btn_sm {
+  padding: 0rem;
+  padding: 0.25rem;
+  font-size: 0.8rem;
+}
+
+.btn_md {
+  padding: 0.5rem;
+  min-width: 160px;
+  height: 40px;
+}
+
+// Генерирует кнопки всех цветов приложения
+@each $color-name, $color-value in $colors {
+  .btn_#{$color-name} {
+    background-color: $color-value;
+  }
+}

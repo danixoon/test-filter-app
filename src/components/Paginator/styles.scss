@@ -1,0 +1,23 @@
+@import "../../sass/theme.scss";
+
+.paginator {
+  display: flex;
+}
+
+.paginator__button {
+  padding: 0;
+  background-color: transparent;
+  border: 1px solid $color-grey-1;
+
+  padding: 0.25rem;
+  min-width: 24px;
+  min-height: 24px;
+
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+
+  font-size: medium;
+
+  cursor: pointer;
+}
