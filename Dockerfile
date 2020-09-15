@@ -1,5 +1,5 @@
 # pull official base image
-FROM node:13.12.0-alpine
+FROM node:13.12.0-alpine AS builder
 
 # set working directory
 WORKDIR /app
@@ -11,11 +11,23 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json ./
 COPY yarn.lock ./
 COPY tsconfig.json ./
-RUN yarn
-RUN yarn global add react-scripts@3.4.1
-
-# add app
+COPY webpack.config.js ./
 COPY . ./
 
-# start app
-CMD ["yarn", "start"]
+
+RUN yarn build
+
+
+
+# add app
+
+
+FROM nginx:alpine AS final
+
+COPY --from=builder /app/build/ /usr/share/nginx/html
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d
+
+EXPOSE 8080
+
+CMD  ["nginx", "-g", "daemon off;"]

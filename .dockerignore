@@ -3,3 +3,7 @@ build
 .dockerignore
 Dockerfile
 Dockerfile.prod
+.vscode
+.storybook
+.gitignore
+yarn-error.log
