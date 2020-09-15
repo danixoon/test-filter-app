@@ -13,6 +13,24 @@ import { useInput } from "../../hooks/useInput";
 
 import "./styles.scss";
 
+const ItemInfo: React.FC<{ item: DataItem }> = (props) => {
+  const { item } = props;
+  return (
+    <div className="item-info">
+      Выбран пользователь
+      <b>
+        {item.firstName} {item.lastName}
+      </b>
+      Описание:
+      <textarea defaultValue={item.description} />
+      Адрес проживания: <b>{item.address.streetAddress}</b>
+      Город: <b>{item.address.city}</b>
+      Штат: <b>{item.address.state}</b>
+      Индекс: <b>{item.address.zip}</b>
+    </div>
+  );
+};
+
 export type RootLayoutProps = ConnectedProps<typeof rootContainerEnchancer>;
 
 const RootLayout: React.FC<RootLayoutProps> = (props) => {
@@ -31,10 +49,21 @@ const RootLayout: React.FC<RootLayoutProps> = (props) => {
   } = props;
 
   const [bind, input] = useInput({ searchQuery: null as string | null });
+  const [selectedItem, setSelectedRow] = React.useState<null | DataItem>(
+    () => null
+  );
 
   const handleSearch = () => {
     searchData({ searchQuery: input.searchQuery || "" });
   };
+
+  const handleRowSelect = (item: DataItem) => {
+    setSelectedRow(item);
+  };
+
+  React.useEffect(() => {
+    setSelectedRow(null);
+  }, [items]);
 
   return (
     <>
@@ -88,8 +117,8 @@ const RootLayout: React.FC<RootLayoutProps> = (props) => {
         />
 
         <Table
-          onTableRowClick={() => {}}
-          selectedRow={1}
+          onTableRowClick={handleRowSelect}
+          selectedRowId={selectedItem?.uuid || undefined}
           className="root-layout__table"
           onSortChange={(sortOrder, sortProperty) =>
             sortItems({ sortOrder, sortProperty })
@@ -102,10 +131,12 @@ const RootLayout: React.FC<RootLayoutProps> = (props) => {
             { displayName: "Имя", propertyName: "firstName" },
             { displayName: "Фамилия", propertyName: "lastName" },
             { displayName: "Почта", propertyName: "email" },
-            { displayName: "Адрес", propertyName: "address" },
+            { displayName: "Адрес", propertyName: "fullAddress" },
             { displayName: "Описание", propertyName: "description" },
           ].map((v) => ({ ...v, sortable: true }))}
         />
+
+        {selectedItem && <ItemInfo item={selectedItem} />}
       </div>
     </>
   );

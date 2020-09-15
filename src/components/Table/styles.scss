@@ -28,6 +28,10 @@
   user-select: none;
 }
 
+.table__row {
+  cursor: pointer;
+}
+
 .table-sort__icon {
   margin-left: auto;
 }

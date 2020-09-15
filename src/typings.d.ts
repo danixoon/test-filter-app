@@ -9,11 +9,15 @@ declare module "*.png" {
 }
 
 declare interface DataItem {
+  uuid: string;
+
   id: number;
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
+
+  fullAddress: string;
 
   address: {
     streetAddress: string;

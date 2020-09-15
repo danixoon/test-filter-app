@@ -1,3 +1,4 @@
+import { v4 as uuid } from "uuid";
 import { Reducer } from "redux";
 import { ActionTypes, DataState } from "../types";
 import { setError, setAction } from "../store";
@@ -16,8 +17,6 @@ const defaultState: () => DataState = () => ({
   offset: 0,
 });
 
-
-
 export const dataReducer: Reducer<DataState, Action> = (
   state = defaultState(),
   action
@@ -33,7 +32,7 @@ export const dataReducer: Reducer<DataState, Action> = (
       return {
         ...defaultState(),
         dataType: state.dataType,
-        items: action.payload,
+        items: action.payload.map((item) => ({ ...item, uuid: uuid() })),
       };
 
     case ActionTypes.DATA_CHANGE_OFFSET:

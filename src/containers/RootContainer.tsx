@@ -35,7 +35,7 @@ const mapStateToProps = ({ data }: RootState) => {
     .slice(data.offset, data.offset + maxResultsPerPage)
     .map((item, i) => ({
       ...item,
-      address: [
+      fullAddress: [
         item.address.state,
         item.address.city,
         item.address.streetAddress,

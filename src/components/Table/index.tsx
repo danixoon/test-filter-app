@@ -15,12 +15,12 @@ interface TableProps
   headers: TableHeader[];
   maxRows?: number;
 
-  selectedRow?: number;
+  selectedRowId?: string;
 
   sortOrder?: "ASC" | "DESC";
   sortProperty?: keyof DataItem | null;
 
-  onTableRowClick: (id: number) => void;
+  onTableRowClick: (item: any) => void;
   onSortChange: (
     sortOrder: "ASC" | "DESC",
     sortProperty: keyof DataItem
@@ -62,7 +62,7 @@ const Table: React.FC<TableProps> = (props: TableProps) => {
     maxRows = 10,
     sortOrder = "ASC",
     sortProperty,
-    selectedRow,
+    selectedRowId,
     onSortChange,
     onTableRowClick,
     ...rest
@@ -92,9 +92,10 @@ const Table: React.FC<TableProps> = (props: TableProps) => {
           <tr
             key={i}
             className={
-              "table__row " + (i === selectedRow ? "table-row_selected" : "")
+              "table__row " +
+              (item.uuid === selectedRowId ? "table-row_selected" : "")
             }
-            onClick={() => onTableRowClick(i)}
+            onClick={() => onTableRowClick(item)}
           >
             {headers.map((header) => (
               <td key={header.propertyName} className="table__cell">

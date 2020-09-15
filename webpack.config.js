@@ -49,7 +49,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Cowobot",
+      title: "Приложение",
       template: path.resolve(__dirname, "public/index.pug"),
     }),
   ],
