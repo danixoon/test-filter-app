@@ -1,4 +1,5 @@
 import * as React from "react";
+import { mergeProps } from "../../utils";
 import "./styles.scss";
 
 interface ButtonProps
@@ -15,9 +16,8 @@ const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
 
   return (
     <button
-      className={`btn btn_${color} btn_${size}`}
       onClick={() => toggle(!active)}
-      {...rest}
+      {...mergeProps({ className: `btn btn_${color} btn_${size}` }, rest)}
     >
       {children}
     </button>

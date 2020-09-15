@@ -1,4 +1,5 @@
 import * as React from "react";
+import { mergeProps } from "../../utils";
 import "./styles.scss";
 
 type FormProps = React.HTMLAttributes<HTMLFormElement> & {
@@ -20,7 +21,10 @@ const Form: React.FC<React.PropsWithChildren<FormProps>> = (
   };
 
   return (
-    <form {...rest} onSubmit={handleOnSubmit} className="form">
+    <form
+      {...mergeProps({ className: "form" }, rest)}
+      onSubmit={handleOnSubmit}
+    >
       {children}
     </form>
   );

@@ -41,6 +41,8 @@ declare type ActionPayload = {
   DATA_SEARCH_LOADING: {};
   DATA_SEARCH_SUCCESS: { result: number[]; searchQuery: string };
   DATA_SEARCH_ERROR: Error;
+
+  DATA_ITEM_ADD: { item: DataItem };
 };
 
 declare type Action<

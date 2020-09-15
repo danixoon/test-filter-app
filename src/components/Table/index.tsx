@@ -90,7 +90,7 @@ const Table: React.FC<TableProps> = (props: TableProps) => {
         </tr>
         {items.map((item, i) => (
           <tr
-            key={i}
+            key={item.uuid}
             className={
               "table__row " +
               (item.uuid === selectedRowId ? "table-row_selected" : "")

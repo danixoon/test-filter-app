@@ -32,7 +32,16 @@ export const dataReducer: Reducer<DataState, Action> = (
       return {
         ...defaultState(),
         dataType: state.dataType,
-        items: action.payload.map((item) => ({ ...item, uuid: uuid() })),
+        items: action.payload.map((item) => ({
+          ...item,
+          uuid: uuid(),
+          fullAddress: [
+            item.address.state,
+            item.address.city,
+            item.address.streetAddress,
+            item.address.zip,
+          ].join(", "),
+        })),
       };
 
     case ActionTypes.DATA_CHANGE_OFFSET:
@@ -62,6 +71,12 @@ export const dataReducer: Reducer<DataState, Action> = (
         searchResult: action.payload.result,
         offset: 0,
         ...setAction(),
+      };
+
+    case ActionTypes.DATA_ITEM_ADD:
+      return {
+        ...state,
+        items: [action.payload.item, ...state.items],
       };
 
     default:

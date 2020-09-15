@@ -8,10 +8,6 @@
   // align-items: center;
 }
 
-.root-layout__table-paginator {
-  margin-top: 1rem;
-}
-
 .root-layout__table {
   margin: 1rem 0rem;
 }
@@ -33,4 +29,35 @@
 .item-info {
   display: flex;
   flex-flow: column;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.control__add-item {
+  margin-left: auto;
+}
+
+.add-item__popup {
+  position: absolute;
+  top: 0;
+
+  flex-flow: row;
+  background-color: white;
+  padding: 1rem;
+
+  box-shadow: 0 0 5px rgba($color: #000000, $alpha: 0.2);
+  z-index: 10;
+}
+
+.add-item__group {
+  margin: 0 0.25rem;
+  flex: 1;
+}
+
+.add-item__container {
+  position: relative;
 }

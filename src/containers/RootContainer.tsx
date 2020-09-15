@@ -35,12 +35,6 @@ const mapStateToProps = ({ data }: RootState) => {
     .slice(data.offset, data.offset + maxResultsPerPage)
     .map((item, i) => ({
       ...item,
-      fullAddress: [
-        item.address.state,
-        item.address.city,
-        item.address.streetAddress,
-        item.address.zip,
-      ].join(", "),
     }));
 
   return {
@@ -62,6 +56,7 @@ const mapDispatchToProps = {
   sortItems: getActionCreator(ActionTypes.DATA_SORT),
   setDataType: getActionCreator(ActionTypes.DATA_FETCH),
   searchData: getActionCreator(ActionTypes.DATA_SEARCH),
+  addItem: getActionCreator(ActionTypes.DATA_ITEM_ADD),
 };
 
 export const rootContainerEnchancer = connect(

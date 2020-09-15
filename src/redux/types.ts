@@ -20,6 +20,8 @@ export const ActionTypes: { [K in keyof ActionPayload]: K } = {
   DATA_SEARCH_LOADING: "DATA_SEARCH_LOADING",
   DATA_SEARCH_SUCCESS: "DATA_SEARCH_SUCCESS",
   DATA_SEARCH_ERROR: "DATA_SEARCH_ERROR",
+
+  DATA_ITEM_ADD: "DATA_ITEM_ADD",
 } as const;
 
 export type DataState = StateSchema<

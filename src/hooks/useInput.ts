@@ -4,7 +4,9 @@ export const useInput = function <T = any>(defaultValue: T = {} as T) {
   const [input, setInput] = React.useState<T>(() => defaultValue);
 
   const bind = {
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange: (
+      e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+    ) => {
       setInput({ ...input, [e.target.name]: e.target.value });
     },
   };
